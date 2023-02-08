@@ -4,7 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import DropDown, { VibeType } from "../components/DropDown";
+import DropDown, { FileExtensionType } from "../components/DropDown";
 import Footer from "../components/Footer";
 import Github from "../components/GitHub";
 import Header from "../components/Header";
@@ -14,17 +14,18 @@ import ResizablePanel from "../components/ResizablePanel";
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [vibe, setVibe] = useState<VibeType>("Professional");
+  const [fileExtension, setFileExtension] = useState<FileExtensionType>("Professional");
   const [generatedBios, setGeneratedBios] = useState<String>("");
+  const [inputValue, setInputValue] = useState("");
 
   console.log("Streamed response: ", generatedBios);
 
   const prompt =
-    vibe === "Funny"
+    fileExtension === "Funny"
       ? `Generate 2 funny twitter bios with no hashtags and clearly labeled "1." and "2.". Make sure there is a joke in there and it's a little ridiculous. Make sure each generated bio is at max 20 words and base it on this context: ${bio}${
           bio.slice(-1) === "." ? "" : "."
         }`
-      : `Generate 2 ${vibe} twitter bios with no hashtags and clearly labeled "1." and "2.". Make sure each generated bio is at least 14 words and at max 20 words and base them on this context: ${bio}${
+      : `Generate 2 ${fileExtension} twitter bios with no hashtags and clearly labeled "1." and "2.". Make sure each generated bio is at least 14 words and at max 20 words and base them on this context: ${bio}${
           bio.slice(-1) === "." ? "" : "."
         }`;
 
@@ -67,10 +68,14 @@ const Home: NextPage = () => {
     setLoading(false);
   };
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+};
+
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title>Twitter Generator</title>
+        <title>TextTrek</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -88,7 +93,6 @@ const Home: NextPage = () => {
         <h1 className="sm:text-6xl text-4xl max-w-2xl font-bold text-slate-900">
           Generate your next Twitter bio in seconds
         </h1>
-        <p className="text-slate-500 mt-5">18,167 bios generated so far.</p>
         <div className="max-w-xl">
           <div className="flex mt-10 items-center space-x-3">
             <Image
@@ -99,11 +103,33 @@ const Home: NextPage = () => {
               className="mb-5 sm:mb-0"
             />
             <p className="text-left font-medium">
-              Copy your current bio{" "}
-              <span className="text-slate-500">
+              Upload the file you wish to trek{" "}
+            </p>
+          </div>
+          <input type="file"
+            value={inputValue}
+            onChange={(e) => handleInputChange(e)}
+            className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
+            placeholder={
+              "e.g. "
+            }
+          />
+        </div>
+        <div className="max-w-xl">
+          <div className="flex mt-10 items-center space-x-3">
+            <Image
+              src="/1-black.png"
+              width={30}
+              height={30}
+              alt="1 icon"
+              className="mb-5 sm:mb-0"
+            />
+            <p className="text-left font-medium">
+              What question do you have about the text within the file?{" "}
+              {/* <span className="text-slate-500">
                 (or write a few sentences about yourself)
               </span>
-              .
+              . */}
             </p>
           </div>
           <textarea
@@ -112,15 +138,15 @@ const Home: NextPage = () => {
             rows={4}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
             placeholder={
-              "e.g. Senior Developer Advocate @vercel. Tweeting about web development, AI, and React / Next.js. Writing nutlope.substack.com."
+              "e.g. "
             }
           />
           <div className="flex mb-5 items-center space-x-3">
             <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
-            <p className="text-left font-medium">Select your vibe.</p>
+            <p className="text-left font-medium">Select your fileExtension.</p>
           </div>
           <div className="block">
-            <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
+            <DropDown fileExtension={fileExtension} setFileExtension={(newFileExtension) => setFileExtension(newFileExtension)} />
           </div>
 
           {!loading && (
