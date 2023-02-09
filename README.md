@@ -25,11 +25,12 @@ OPENAI_API_KEY = YOUR_KEY_GOES_HERE
 
 ### Install Dependencies
 
-Open your terminal, and install the required modules for communication to 
+Open your terminal, then install the project modules 
 
 ```
 npm install
 ```
+
 ### Run the Application
 
  Enter the command below, and then you can access your local version at `http://localhost:3000`.
