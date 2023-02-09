@@ -1,8 +1,7 @@
-<p align="center">
-<img src="/public/footsteps.svg" alt="logo" align="center" width="225" height="225"/>
-</p>
+
 
 <div align="center">
+<img src="/public/favicon.svg" alt="logo" align="center" width="200" height="200"/>
 
 # TextTrek
 
