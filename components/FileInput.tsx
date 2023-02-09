@@ -10,6 +10,7 @@ const FileInput: React.FC<Props> = ({ onFileChange }) => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files && event.target.files[0];
+    console.log(event.target.files)
     setFile(selectedFile || null);
     if (selectedFile) {
       onFileChange(selectedFile);
