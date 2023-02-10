@@ -7,7 +7,7 @@
 
 </div>
 
-This is a document processing application users can run locally to query files such as .doc, .pdf, and .xls using the latest and greatest language models. We don't collect any data from users or user files, so from here on out the text you decide to trek is between you and your AI overlords.
+This is a document processing application users can run locally to query files such as .doc, .pdf, and .xls using the latest and greatest language models. We only use open source libraries and don't collect any data from users or their files, so from here on out the text you decide to trek is between you and your AI overlords.
 
 Molded from [Hassan El Mghari's](https://github.com/Nutlope) boilerplate for OpenAI, the goal of this project is to build upon the capabilities of prompting in a transparent way. Even though davinci-003 and ChatGPT aren't natively capable of reading data written on files, conversion from popular extensions  We plan to limit dependencies to those that aren't storing user data. 
 
